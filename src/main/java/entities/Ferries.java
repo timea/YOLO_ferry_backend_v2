@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entites;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author angeloron
+ * @author Timea Kiss hello@timeakiss.com
  */
 @Entity
 @Table(name = "Ferries")
@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Ferries.findByMovableDeck", query = "SELECT f FROM Ferries f WHERE f.movableDeck = :movableDeck"),
     @NamedQuery(name = "Ferries.findByOutOfService", query = "SELECT f FROM Ferries f WHERE f.outOfService = :outOfService"),
     @NamedQuery(name = "Ferries.findByNote", query = "SELECT f FROM Ferries f WHERE f.note = :note"),
-    @NamedQuery(name = "Ferries.findByScheduleId", query = "SELECT f FROM Ferries f WHERE f.scheduleId = :scheduleId")})
+    @NamedQuery(name = "Ferries.findByOwner", query = "SELECT f FROM Ferries f WHERE f.owner = :owner")})
 public class Ferries implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -76,8 +76,8 @@ public class Ferries implements Serializable {
     @Size(max = 200)
     @Column(name = "note")
     private String note;
-    @Column(name = "schedule_id")
-    private Integer scheduleId;
+    @Column(name = "owner")
+    private Integer owner;
 
     public Ferries() {
     }
@@ -168,12 +168,12 @@ public class Ferries implements Serializable {
         this.note = note;
     }
 
-    public Integer getScheduleId() {
-        return scheduleId;
+    public Integer getOwner() {
+        return owner;
     }
 
-    public void setScheduleId(Integer scheduleId) {
-        this.scheduleId = scheduleId;
+    public void setOwner(Integer owner) {
+        this.owner = owner;
     }
 
     @Override

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entites;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author angeloron
+ * @author Timea Kiss hello@timeakiss.com
  */
 @Entity
 @Table(name = "Routes")
@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Routes.findByArrivalHarbor", query = "SELECT r FROM Routes r WHERE r.arrivalHarbor = :arrivalHarbor"),
     @NamedQuery(name = "Routes.findByPrice", query = "SELECT r FROM Routes r WHERE r.price = :price"),
     @NamedQuery(name = "Routes.findByFerry", query = "SELECT r FROM Routes r WHERE r.ferry = :ferry"),
-    @NamedQuery(name = "Routes.findByRestrictionNote", query = "SELECT r FROM Routes r WHERE r.restrictionNote = :restrictionNote")})
+    @NamedQuery(name = "Routes.findByRestrictionNote", query = "SELECT r FROM Routes r WHERE r.restrictionNote = :restrictionNote"),
+    @NamedQuery(name = "Routes.findByScheduleId", query = "SELECT r FROM Routes r WHERE r.scheduleId = :scheduleId")})
 public class Routes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,6 +53,8 @@ public class Routes implements Serializable {
     @Size(max = 200)
     @Column(name = "restriction_note")
     private String restrictionNote;
+    @Column(name = "schedule_id")
+    private Integer scheduleId;
 
     public Routes() {
     }
@@ -106,6 +109,14 @@ public class Routes implements Serializable {
 
     public void setRestrictionNote(String restrictionNote) {
         this.restrictionNote = restrictionNote;
+    }
+
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
+
+    public void setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
     @Override

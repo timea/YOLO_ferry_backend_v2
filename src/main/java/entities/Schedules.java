@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entites;
+package entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author angeloron
+ * @author Timea Kiss hello@timeakiss.com
  */
 @Entity
 @Table(name = "Schedules")
@@ -46,6 +46,8 @@ public class Schedules implements Serializable {
     @Column(name = "departure_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date departureTime;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "arrival_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
@@ -57,9 +59,10 @@ public class Schedules implements Serializable {
         this.scheduleId = scheduleId;
     }
 
-    public Schedules(Integer scheduleId, Date departureTime) {
+    public Schedules(Integer scheduleId, Date departureTime, Date arrivalTime) {
         this.scheduleId = scheduleId;
         this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
     }
 
     public Integer getScheduleId() {

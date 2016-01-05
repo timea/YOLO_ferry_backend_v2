@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entites;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -21,53 +21,47 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author angeloron
+ * @author Timea Kiss hello@timeakiss.com
  */
 @Entity
-@Table(name = "Vehicles")
+@Table(name = "Harbors")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Vehicles.findAll", query = "SELECT v FROM Vehicles v"),
-    @NamedQuery(name = "Vehicles.findByVehicleId", query = "SELECT v FROM Vehicles v WHERE v.vehicleId = :vehicleId"),
-    @NamedQuery(name = "Vehicles.findByName", query = "SELECT v FROM Vehicles v WHERE v.name = :name"),
-    @NamedQuery(name = "Vehicles.findBySize", query = "SELECT v FROM Vehicles v WHERE v.size = :size")})
-public class Vehicles implements Serializable {
+    @NamedQuery(name = "Harbors.findAll", query = "SELECT h FROM Harbors h"),
+    @NamedQuery(name = "Harbors.findByHarborId", query = "SELECT h FROM Harbors h WHERE h.harborId = :harborId"),
+    @NamedQuery(name = "Harbors.findByName", query = "SELECT h FROM Harbors h WHERE h.name = :name")})
+public class Harbors implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "vehicle_id")
-    private Integer vehicleId;
+    @Column(name = "harbor_id")
+    private Integer harborId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "size")
-    private int size;
 
-    public Vehicles() {
+    public Harbors() {
     }
 
-    public Vehicles(Integer vehicleId) {
-        this.vehicleId = vehicleId;
+    public Harbors(Integer harborId) {
+        this.harborId = harborId;
     }
 
-    public Vehicles(Integer vehicleId, String name, int size) {
-        this.vehicleId = vehicleId;
+    public Harbors(Integer harborId, String name) {
+        this.harborId = harborId;
         this.name = name;
-        this.size = size;
     }
 
-    public Integer getVehicleId() {
-        return vehicleId;
+    public Integer getHarborId() {
+        return harborId;
     }
 
-    public void setVehicleId(Integer vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setHarborId(Integer harborId) {
+        this.harborId = harborId;
     }
 
     public String getName() {
@@ -78,29 +72,21 @@ public class Vehicles implements Serializable {
         this.name = name;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (vehicleId != null ? vehicleId.hashCode() : 0);
+        hash += (harborId != null ? harborId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vehicles)) {
+        if (!(object instanceof Harbors)) {
             return false;
         }
-        Vehicles other = (Vehicles) object;
-        if ((this.vehicleId == null && other.vehicleId != null) || (this.vehicleId != null && !this.vehicleId.equals(other.vehicleId))) {
+        Harbors other = (Harbors) object;
+        if ((this.harborId == null && other.harborId != null) || (this.harborId != null && !this.harborId.equals(other.harborId))) {
             return false;
         }
         return true;
@@ -108,7 +94,7 @@ public class Vehicles implements Serializable {
 
     @Override
     public String toString() {
-        return "entites.Vehicles[ vehicleId=" + vehicleId + " ]";
+        return "entites.Harbors[ harborId=" + harborId + " ]";
     }
     
 }

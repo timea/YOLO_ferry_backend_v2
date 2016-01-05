@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entites;
+package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,16 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author angeloron
+ * @author Timea Kiss hello@timeakiss.com
  */
 @Entity
 @Table(name = "Customers")
@@ -41,7 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Customers.findByFloor", query = "SELECT c FROM Customers c WHERE c.floor = :floor"),
     @NamedQuery(name = "Customers.findByDoor", query = "SELECT c FROM Customers c WHERE c.door = :door"),
     @NamedQuery(name = "Customers.findByCountry", query = "SELECT c FROM Customers c WHERE c.country = :country"),
-    @NamedQuery(name = "Customers.findByAmountOfFreeRides", query = "SELECT c FROM Customers c WHERE c.amountOfFreeRides = :amountOfFreeRides")})
+    @NamedQuery(name = "Customers.findByAmountOfFreeRides", query = "SELECT c FROM Customers c WHERE c.amountOfFreeRides = :amountOfFreeRides"),
+    @NamedQuery(name = "Customers.findByUsername", query = "SELECT c FROM Customers c WHERE c.username = :username"),
+    @NamedQuery(name = "Customers.findByPassword", query = "SELECT c FROM Customers c WHERE c.password = :password")})
 public class Customers implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -82,8 +80,12 @@ public class Customers implements Serializable {
     private String country;
     @Column(name = "amount_of_free_rides")
     private Integer amountOfFreeRides;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Collection<Accounts> accountsCollection;
+    @Size(max = 50)
+    @Column(name = "username")
+    private String username;
+    @Size(max = 50)
+    @Column(name = "password")
+    private String password;
 
     public Customers() {
     }
@@ -179,13 +181,20 @@ public class Customers implements Serializable {
         this.amountOfFreeRides = amountOfFreeRides;
     }
 
-    @XmlTransient
-    public Collection<Accounts> getAccountsCollection() {
-        return accountsCollection;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccountsCollection(Collection<Accounts> accountsCollection) {
-        this.accountsCollection = accountsCollection;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
