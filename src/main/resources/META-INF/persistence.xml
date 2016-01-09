@@ -2,7 +2,18 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="com.awesome_YOLO_ferry_backend_v2_ejb_1.0-SNAPSHOTPU" transaction-type="JTA">
     <jta-data-source>java:app/jdbc/ferry</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>entities.Customers</class>
+    <class>entities.Discounts</class>
+    <class>entities.Ferries</class>
+    <class>entities.Harbors</class>
+    <class>entities.Orders</class>
+    <class>entities.Ordervehicles</class>
+    <class>entities.Owners</class>
+    <class>entities.Routes</class>
+    <class>entities.Schedules</class>
+    <class>entities.Vehicletypes</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <validation-mode>NONE</validation-mode>
     <properties/>
   </persistence-unit>
 </persistence>

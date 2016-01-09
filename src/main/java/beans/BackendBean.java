@@ -26,10 +26,12 @@ import ETOs.NoRouteETO;
 import ETOs.NoScheduleETO;
 import ETOs.NoVehicleETO;
 import contracts.AdminContract;
+import entities.Customers;
 import java.util.Collection;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -37,15 +39,17 @@ import javax.persistence.PersistenceContext;
  *
  * @author Timea Kiss hello@timeakiss.com
  */
-@Stateful
+@Stateless
 //@Binding(jndiBinding="tutorialsPoint/librarySession")
 public class BackendBean implements AdminContract {
     
-    @PersistenceContext(unitName = "com.awesome_YOLO_ferry_backend_v2_ejb_1.0-SNAPSHOTPU")
+    @PersistenceContext//(unitName = "com.awesome_YOLO_ferry_backend_v2_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
     
-    @Resource
-    SessionContext ctx;
+//    @Resource
+//    SessionContext ctx;
+    
+    public BackendBean(){};
 
     @Override
     public Collection<FerryDTO> getAllFerries() throws NoFerryETO {
@@ -63,7 +67,7 @@ public class BackendBean implements AdminContract {
     }
 
     @Override
-    public boolean createRoute(RouteDTO route) throws NoTransactionETO {
+    public boolean createRoute(RouteDTO route) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -103,8 +107,13 @@ public class BackendBean implements AdminContract {
     }
 
     @Override
-    public boolean createCustomer(CustomerDTO customer) throws NoTransactionETO {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CustomerDTO createCustomer(CustomerDTO customer) {
+       Customers cust = new Customers();
+       cust.setFirstName(customer.getFirstName()); 
+       cust.setLastName(customer.getLastName());
+        System.out.println(cust.toString());
+       em.persist(cust);
+       return customer;
     }
 
     @Override

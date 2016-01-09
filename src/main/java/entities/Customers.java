@@ -58,9 +58,7 @@ public class Customers implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "last_name")
     private String lastName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 11)
+    @Size(max = 11)
     @Column(name = "type")
     private String type;
     @Size(max = 80)
@@ -94,11 +92,10 @@ public class Customers implements Serializable {
         this.customerId = customerId;
     }
 
-    public Customers(Integer customerId, String firstName, String lastName, String type) {
+    public Customers(Integer customerId, String firstName, String lastName) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.type = type;
     }
 
     public Integer getCustomerId() {
@@ -219,7 +216,7 @@ public class Customers implements Serializable {
 
     @Override
     public String toString() {
-        return "entites.Customers[ customerId=" + customerId + " ]";
+        return "entities.Customers[ customerId=" + customerId + " ]";
     }
     
 }
