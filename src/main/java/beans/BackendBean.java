@@ -73,10 +73,12 @@ public class BackendBean implements AdminContract {
         newRoute.setDepartureHarbor(route.getDepartureHarbor().getId());
         newRoute.setScheduleId(route.getSchedule().getId());
         newRoute.setFerry(route.getFerry().getId());
-        newRoute.setRestrictionNote(route.getRestriction().getDescription());
+        newRoute.setRestrictionId(route.getRestriction().getId());
         newRoute.setPrice((int)route.getPrice());
+        System.out.println("MUIE");
         try{
             em.persist(newRoute);
+            System.out.println("MUIE2");
             return true;
         } catch(Exception e){
             NoTransactionETO eto = new NoTransactionETO("Invalid Transaction");

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Routes.findByArrivalHarbor", query = "SELECT r FROM Routes r WHERE r.arrivalHarbor = :arrivalHarbor"),
     @NamedQuery(name = "Routes.findByPrice", query = "SELECT r FROM Routes r WHERE r.price = :price"),
     @NamedQuery(name = "Routes.findByFerry", query = "SELECT r FROM Routes r WHERE r.ferry = :ferry"),
-    @NamedQuery(name = "Routes.findByRestrictionNote", query = "SELECT r FROM Routes r WHERE r.restrictionNote = :restrictionNote"),
+    @NamedQuery(name = "Routes.findByRestrictionNote", query = "SELECT r FROM Routes r WHERE r.restrictionId = :restrictionId"),
     @NamedQuery(name = "Routes.findByScheduleId", query = "SELECT r FROM Routes r WHERE r.scheduleId = :scheduleId")})
 public class Routes implements Serializable {
 
@@ -42,17 +42,17 @@ public class Routes implements Serializable {
     @Basic(optional = false)
     @Column(name = "route_id")
     private Integer routeId;
-    @Column(name = "departure_harbor")
+    @Column(name = "departure_harbor_id")
     private Integer departureHarbor;
-    @Column(name = "arrival_harbor")
+    @Column(name = "arrival_harbor_id")
     private Integer arrivalHarbor;
     @Column(name = "price")
     private Integer price;
-    @Column(name = "ferry")
+    @Column(name = "ferry_id")
     private Integer ferry;
     @Size(max = 200)
-    @Column(name = "restriction_note")
-    private String restrictionNote;
+    @Column(name = "restriction_id")
+    private Integer restrictionId;
     @Column(name = "schedule_id")
     private Integer scheduleId;
 
@@ -103,14 +103,14 @@ public class Routes implements Serializable {
         this.ferry = ferry;
     }
 
-    public String getRestrictionNote() {
-        return restrictionNote;
+    public Integer getRestrictionId() {
+        return restrictionId;
     }
 
-    public void setRestrictionNote(String restrictionNote) {
-        this.restrictionNote = restrictionNote;
+    public void setRestrictionId(Integer restrictionId) {
+        this.restrictionId = restrictionId;
     }
-
+    
     public Integer getScheduleId() {
         return scheduleId;
     }
