@@ -26,7 +26,7 @@ import ETOs.NoRouteETO;
 import ETOs.NoScheduleETO;
 import ETOs.NoVehicleETO;
 import contracts.AdminContract;
-import entities.Customers;
+import entities.*;
 import java.util.Collection;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -67,8 +67,21 @@ public class BackendBean implements AdminContract {
     }
 
     @Override
-    public boolean createRoute(RouteDTO route) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean createRoute(RouteDTO route) throws NoTransactionETO {
+        Routes newRoute = new Routes();
+        newRoute.setArrivalHarbor(route.getArrivalHarbor().getId());
+        newRoute.setDepartureHarbor(route.getDepartureHarbor().getId());
+        newRoute.setScheduleId(route.getSchedule().getId());
+        newRoute.setFerry(route.getFerry().getId());
+        newRoute.setRestrictionNote(route.getRestriction().getDescription());
+        newRoute.setPrice((int)route.getPrice());
+        try{
+            em.persist(newRoute);
+            return true;
+        } catch(Exception e){
+            NoTransactionETO eto = new NoTransactionETO("Invalid Transaction");
+            throw eto;
+        }
     }
 
     @Override
@@ -135,5 +148,16 @@ public class BackendBean implements AdminContract {
     public void editBooking(BookingDTO editedBooking, int bookingId) throws NoTransactionETO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean createHarbor(HarborDTO harbor) throws NoTransactionETO {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean createSchedule(ScheduleDTO schedule) throws NoTransactionETO {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
