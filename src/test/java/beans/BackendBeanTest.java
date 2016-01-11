@@ -71,7 +71,6 @@ public class BackendBeanTest {
      */
     @Test
     public void testCreateRoute() throws Exception {
-        System.out.println("createRoute");
         RouteDTO route = new RouteDTO(3, new HarborDTO(1, ""), new HarborDTO(2, ""), 40, 
               new FerryDTO(1, 2, 2, 2, 2, true, false, null, 1), 
               new RestrictionDTO(1, "Muie", "bigMuie"), new ScheduleDTO(1, null, null));
@@ -79,8 +78,8 @@ public class BackendBeanTest {
         //AdminContract instance = (AdminContract)container.getContext().lookup("java:global/classes/BackendBean");
         boolean expResult = true;
         backendBean = new BackendBean();
-//        boolean result = backendBean.createRoute(route);
-        assertEquals(expResult, true);
+        boolean result = backendBean.createRoute(route);
+        assertEquals(expResult, result);
         //container.close();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
